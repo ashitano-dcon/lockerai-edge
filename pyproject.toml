@@ -1,0 +1,20 @@
+[project]
+name = "lockerai-edge"
+version = "0.1.0"
+description = "Repository for edge devices to control the opening and closing of lockers."
+authors = [
+  { name = "shio", email = "85730998+dino3616@users.noreply.github.com" },
+]
+dependencies = ["rpi-gpio==0.7.1"]
+readme = "README.md"
+requires-python = "==3.13.1"
+
+[tool.rye]
+managed = true
+dev-dependencies = ["lefthook==1.10.3", "mypy==1.14.1", "ruff==0.9.1"]
+
+[tool.rye.scripts]
+check = { chain = ["lint", "lint:type", "fmt"] }
+"lint" = "ruff check ./ --diff"
+"lint:type" = "mypy ./ --explicit-package-bases"
+"fmt" = "ruff format ./ --check"

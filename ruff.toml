@@ -1,0 +1,39 @@
+target-version = "py312"
+indent-width = 4
+line-length = 120
+exclude = [
+  "__pycache__",
+  ".mypy_cache",
+  ".ruff_cache",
+  ".venv",
+  "*.egg-info",
+  "*log*",
+]
+
+[lint]
+select = ["ALL"]
+fixable = ["ALL"]
+ignore = [
+  "ANN201",
+  "COM812",
+  "D100",
+  "D103",
+  "D202",
+  "D203",
+  "D213",
+  "EM101",
+  "ISC001",
+  "T201",
+  "TRY002",
+  "TRY003",
+]
+
+[lint.extend-per-file-ignores]
+"__init__.py" = ["D1", "F403"]
+"__main__.py" = ["D1"]
+
+[format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"

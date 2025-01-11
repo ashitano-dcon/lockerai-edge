@@ -1,0 +1,12 @@
+pre-commit:
+  parallel: true
+  commands:
+    check-py:
+      glob: "*.*{py}*"
+      run: ruff check --fix {staged_files}
+    check-py-type:
+      glob: "*.*{py}*"
+      run: mypy --explicit-package-bases {staged_files}
+    format-py:
+      glob: "*.*{py}*"
+      run: ruff format {staged_files}
