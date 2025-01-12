@@ -10,12 +10,36 @@
 #   universal: false
 
 -e file:.
+certifi==2024.12.14
+    # via requests
+charset-normalizer==3.4.1
+    # via requests
+evdev==1.7.1
+    # via pynput
+idna==3.10
+    # via requests
 lefthook==1.10.3
 mypy==1.14.1
 mypy-extensions==1.0.0
     # via mypy
+pynput==1.7.7
+    # via lockerai-edge
+python-dotenv==1.0.1
+    # via lockerai-edge
+python-xlib==0.33
+    # via pynput
+requests==2.32.3
+    # via lockerai-edge
 rpi-gpio==0.7.1
     # via lockerai-edge
 ruff==0.9.1
+six==1.17.0
+    # via pynput
+    # via python-xlib
+types-requests==2.32.0.20241016
+    # via lockerai-edge
 typing-extensions==4.12.2
     # via mypy
+urllib3==2.3.0
+    # via requests
+    # via types-requests
