@@ -4,11 +4,11 @@ from dotenv import load_dotenv
 
 from infra.gpio_driver import GpioDriver
 from infra.qr_code_reader_driver import QrCodeReaderDriver
-from service import APIClient
+from service import ApiClient
 
 load_dotenv()
 
-client = APIClient(base_url=str(os.environ.get("API_BASE_URL")))
+client = ApiClient(base_url=str(os.environ.get("API_BASE_URL")))
 
 gpio_driver = GpioDriver(
     drawer_id_pin_map={
