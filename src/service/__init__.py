@@ -8,11 +8,11 @@ from model.user import User
 
 class ApiClient:
     def __init__(self, base_url: str) -> None:
-        self.base_url = base_url
+        self.__base_url = base_url
 
     def put_in_lost_item(self, user_id: str) -> Drawer:
         response = requests.post(
-            self.base_url + "/drawers/put-in",
+            self.__base_url + "/drawers/put-in",
             {
                 "userId": user_id,
             },
@@ -31,7 +31,7 @@ class ApiClient:
 
     def take_out_lost_item(self, user_id: str) -> Drawer:
         response = requests.post(
-            self.base_url + "/drawers/take-out",
+            self.__base_url + "/drawers/take-out",
             {
                 "userId": user_id,
             },
@@ -56,7 +56,7 @@ class ApiClient:
         description: str,
     ) -> None:
         requests.post(
-            self.base_url + f"/lockers/{locker_id}/status",
+            self.__base_url + f"/lockers/{locker_id}/status",
             {
                 "type": type,
                 "name": name,
@@ -65,7 +65,7 @@ class ApiClient:
         )
 
     def find_user(self, user_id: str) -> User | None:
-        response = requests.get(self.base_url + f"/users/{user_id}").json()
+        response = requests.get(self.__base_url + f"/users/{user_id}").json()
         if response.get("statusCode") and response.get("statusCode") != 200:  # noqa: PLR2004
             print(f"User not found. user_id: {user_id}")
             return None
