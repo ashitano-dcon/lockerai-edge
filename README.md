@@ -1,4 +1,4 @@
-# Lost Item Similarity Dataset
+# Locker.ai Edge
 
 Locker.ai Edge is a repository for edge devices to control the opening and closing of lockers.
 
