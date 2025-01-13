@@ -17,6 +17,6 @@ class GpioDriver:
 
     def open_drawer(self, drawer_id: int) -> None:
         GPIO.output(self.__drawer_id_pin_map[drawer_id], GPIO.HIGH)
-        time.sleep(3)
+        time.sleep(1)
         GPIO.output(self.__drawer_id_pin_map[drawer_id], GPIO.LOW)
-        time.sleep(3)
+        time.sleep(1)
