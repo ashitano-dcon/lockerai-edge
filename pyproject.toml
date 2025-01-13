@@ -6,11 +6,11 @@ authors = [
   { name = "shio", email = "85730998+dino3616@users.noreply.github.com" },
 ]
 dependencies = [
-  "pynput==1.7.7",
-  "python-dotenv==1.0.1",
-  "requests==2.32.3",
-  "rpi-gpio==0.7.1",
-  "types-requests~=2.32.0",
+    "keyboard==0.13.5",
+    "python-dotenv==1.0.1",
+    "requests==2.32.3",
+    "rpi-gpio==0.7.1",
+    "types-requests~=2.32.0",
 ]
 readme = "README.md"
 requires-python = "==3.13.1"

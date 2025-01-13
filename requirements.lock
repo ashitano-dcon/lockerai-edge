@@ -14,23 +14,16 @@ certifi==2024.12.14
     # via requests
 charset-normalizer==3.4.1
     # via requests
-evdev==1.7.1
-    # via pynput
 idna==3.10
     # via requests
-pynput==1.7.7
+keyboard==0.13.5
     # via lockerai-edge
 python-dotenv==1.0.1
     # via lockerai-edge
-python-xlib==0.33
-    # via pynput
 requests==2.32.3
     # via lockerai-edge
 rpi-gpio==0.7.1
     # via lockerai-edge
-six==1.17.0
-    # via pynput
-    # via python-xlib
 types-requests==2.32.0.20241016
     # via lockerai-edge
 urllib3==2.3.0
