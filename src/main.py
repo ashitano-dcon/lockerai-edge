@@ -12,8 +12,8 @@ client = ApiClient(base_url=str(os.environ.get("API_BASE_URL")))
 
 gpio_driver = GpioDriver(
     drawer_id_pin_map={
-        1: 16,
-        2: 28,
+        1: 23,
+        2: 24,
     }
 )
 
@@ -69,5 +69,8 @@ def main(user_id: str) -> None:
 if __name__ == "__main__":
     gpio_driver.setup()
 
-    qr_code_reader_driver = QrCodeReaderDriver(main, gpio_driver.cleanup)
+    qr_code_reader_driver = QrCodeReaderDriver(
+        lambda qr_code: main(qr_code.replace("−", "-").strip()),  # noqa: RUF001
+        gpio_driver.cleanup,
+    )
     qr_code_reader_driver.start()
