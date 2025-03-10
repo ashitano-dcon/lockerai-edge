@@ -33,3 +33,9 @@ rye sync
 ```bash
 source "./.venv/bin/activate"
 ```
+
+### 5. run script
+
+```bash
+rye run python -m main
+```
