@@ -10,11 +10,12 @@ load_dotenv()
 
 client = ApiClient(base_url=str(os.environ.get("API_BASE_URL")))
 
+drawer_id_pin_map = {
+    1: 23,
+    2: 24,
+}
 gpio_driver = GpioDriver(
-    drawer_id_pin_map={
-        1: 23,
-        2: 24,
-    }
+    drawer_id_pin_map,
 )
 
 
@@ -33,7 +34,7 @@ def main(user_id: str) -> None:
         locker_id=str(os.environ.get("LOCKER_ID")),
         type="SUCCESS",
         name="認証成功",
-        description=f"こんにちは、{user.name}さん。",
+        description=f"こんにちは、{'管理者 ' if user.role == 'OCCUPIER' else ''}{user.name}さん。",
     )
 
     if user.lost_and_found_state == "DELIVERING":
@@ -56,6 +57,9 @@ def main(user_id: str) -> None:
             description="自動でロッカーが開きます。遺失物を取り出し、手動でロッカーを閉めてください。",
         )
         gpio_driver.open_drawer(drawer.id)
+    elif user.role == "OCCUPIER":
+        for drawer_id in drawer_id_pin_map:
+            gpio_driver.open_drawer(drawer_id)
     else:
         print("Found user, but lost_and_found_state is NONE.")
         client.update_locker_status(

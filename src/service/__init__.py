@@ -75,6 +75,7 @@ class ApiClient:
             response.get("authId"),
             response.get("name"),
             response.get("email"),
+            response.get("role"),
             response.get("lostAndFoundState"),
             response.get("avatarUrl"),
             response.get("isDiscloseAsOwner"),
