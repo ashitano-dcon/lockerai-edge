@@ -36,5 +36,5 @@ class UartDriver:
             raise ValueError(f"No serial command defined for drawer_id: {drawer_id}")
 
         command = f"{self.drawer_id_serial_command_map[drawer_id]}\r\n"
-        self.serial.write(command.encode())
+        self.serial.write(command.encode("utf-8"))
         self.serial.flush()
