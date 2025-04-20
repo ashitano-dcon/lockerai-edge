@@ -15,7 +15,7 @@ drawer_id_serial_command_map = {
     2: "2",
 }
 uart_driver = UartDriver(
-    port=str(os.environ.get("UART_PORT", "/dev/ttyS0")),
+    port=str(os.environ.get("UART_PORT", "/dev/serial0")),
     baudrate=int(os.environ.get("UART_BAUDRATE", 9600)),
     drawer_id_serial_command_map=drawer_id_serial_command_map
 )
