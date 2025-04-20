@@ -15,6 +15,6 @@ gpio_driver = GpioDriver(
 if __name__ == "__main__":
     gpio_driver.setup()
 
-    gpio_driver.open_drawer(2)
+    gpio_driver.open_drawer(1)
 
     gpio_driver.cleanup()
