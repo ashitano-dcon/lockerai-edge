@@ -37,4 +37,5 @@ class UartDriver:
 
         command = f"{self.drawer_id_serial_command_map[drawer_id]}\r\n"
         self.serial.write(command.encode("utf-8"))
+        time.sleep(0.5)
         self.serial.flush()
