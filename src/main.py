@@ -2,7 +2,7 @@ import os
 
 from dotenv import load_dotenv
 
-from infra.gpio_driver import GpioDriver
+from infra.uart_driver import UartDriver
 from infra.qr_code_reader_driver import QrCodeReaderDriver
 from service import ApiClient
 
@@ -10,12 +10,9 @@ load_dotenv()
 
 client = ApiClient(base_url=str(os.environ.get("API_BASE_URL")))
 
-drawer_id_pin_map = {
-    1: 23,
-    2: 24,
-}
-gpio_driver = GpioDriver(
-    drawer_id_pin_map,
+uart_driver = UartDriver(
+    port=str(os.environ.get("UART_PORT", "/dev/ttyUSB0")),
+    baudrate=int(os.environ.get("UART_BAUDRATE", 9600))
 )
 
 
@@ -46,7 +43,7 @@ def main(user_id: str) -> None:
             name="拾得物受付",
             description="自動でロッカーが開きます。拾得物を収納し、手動でロッカーを閉めてください。",
         )
-        gpio_driver.open_drawer(drawer.id)
+        uart_driver.open_drawer(drawer.id)
     elif user.lost_and_found_state == "RETRIEVING":
         drawer = client.take_out_lost_item(user.id)
         print(f"Take out lost item. drawer_id: {drawer.id}")
@@ -56,10 +53,11 @@ def main(user_id: str) -> None:
             name="遺失物受付",
             description="自動でロッカーが開きます。遺失物を取り出し、手動でロッカーを閉めてください。",
         )
-        gpio_driver.open_drawer(drawer.id)
+        uart_driver.open_drawer(drawer.id)
     elif user.role == "OCCUPIER":
-        for drawer_id in drawer_id_pin_map:
-            gpio_driver.open_drawer(drawer_id)
+        # HACK: The current implementation is fixed and opens 6 lockers, but it should be possible to get the drawers related to the lockers from the API.
+        for drawer_id in range(1, 7):
+            uart_driver.open_drawer(drawer_id)
     else:
         print("Found user, but lost_and_found_state is NONE.")
         client.update_locker_status(
@@ -71,10 +69,10 @@ def main(user_id: str) -> None:
 
 
 if __name__ == "__main__":
-    gpio_driver.setup()
+    uart_driver.setup()
 
     qr_code_reader_driver = QrCodeReaderDriver(
         lambda qr_code: main(qr_code.replace("−", "-").strip()),  # noqa: RUF001
-        gpio_driver.cleanup,
+        uart_driver.cleanup,
     )
     qr_code_reader_driver.start()
