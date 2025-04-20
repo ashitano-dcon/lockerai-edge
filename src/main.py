@@ -10,9 +10,14 @@ load_dotenv()
 
 client = ApiClient(base_url=str(os.environ.get("API_BASE_URL")))
 
+drawer_id_serial_command_map = {
+    1: "1",
+    2: "2",
+}
 uart_driver = UartDriver(
-    port=str(os.environ.get("UART_PORT", "/dev/ttyUSB0")),
-    baudrate=int(os.environ.get("UART_BAUDRATE", 9600))
+    port=str(os.environ.get("UART_PORT", "/dev/ttyS0")),
+    baudrate=int(os.environ.get("UART_BAUDRATE", 9600)),
+    drawer_id_serial_command_map=drawer_id_serial_command_map
 )
 
 
