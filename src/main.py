@@ -13,6 +13,9 @@ client = ApiClient(base_url=str(os.environ.get("API_BASE_URL")))
 drawer_id_serial_command_map = {
     1: "1",
     2: "2",
+    3: "3",
+    4: "4",
+    5: "5"
 }
 uart_driver = UartDriver(
     port=str(os.environ.get("UART_PORT", "/dev/serial0")),

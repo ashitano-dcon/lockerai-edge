@@ -35,7 +35,8 @@ class UartDriver:
         if drawer_id not in self.drawer_id_serial_command_map:
             raise ValueError(f"No serial command defined for drawer_id: {drawer_id}")
 
-        command = f"{self.drawer_id_serial_command_map[drawer_id]}\r\n"
+        # {"locker": num, "instruction": "open"}
+        command = f'{{"locker": {self.drawer_id_serial_command_map[drawer_id]}, "instruction": "open"}}\r\n'
         self.serial.write(command.encode("utf-8"))
         time.sleep(0.5)
         self.serial.flush()
