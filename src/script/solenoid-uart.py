@@ -23,13 +23,13 @@ if __name__ == "__main__":
     uart_driver.setup()
 
     uart_driver.open_drawer(1)
-    time.sleep(1)
+    time.sleep(1.5)
     uart_driver.open_drawer(2)
-    time.sleep(1)
+    time.sleep(1.5)
     uart_driver.open_drawer(3)
-    time.sleep(1)
+    time.sleep(1.5)
     uart_driver.open_drawer(4)
-    time.sleep(1)
+    time.sleep(1.5)
     uart_driver.open_drawer(5)
 
     uart_driver.cleanup()
