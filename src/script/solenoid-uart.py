@@ -11,6 +11,9 @@ uart_driver = UartDriver(
     drawer_id_serial_command_map={
         1: "1",
         2: "2",
+        3: "3",
+        4: "4",
+        5: "5"
     }
 )
 
@@ -19,5 +22,9 @@ if __name__ == "__main__":
     uart_driver.setup()
 
     uart_driver.open_drawer(1)
+    uart_driver.open_drawer(2)
+    uart_driver.open_drawer(3)
+    uart_driver.open_drawer(4)
+    uart_driver.open_drawer(5)
 
     uart_driver.cleanup()
