@@ -38,5 +38,5 @@ class UartDriver:
         # {"locker": num, "instruction": "open"}
         command = f'{{"locker": {self.drawer_id_serial_command_map[drawer_id]}, "instruction": "open"}}\r\n'
         self.serial.write(command.encode("utf-8"))
-        time.sleep(0.5)
+        time.sleep(1.5)
         self.serial.flush()
