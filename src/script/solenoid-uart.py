@@ -1,5 +1,6 @@
 import os
 from dotenv import load_dotenv
+import time
 
 from infra.uart_driver import UartDriver
 
@@ -22,9 +23,13 @@ if __name__ == "__main__":
     uart_driver.setup()
 
     uart_driver.open_drawer(1)
+    time.sleep(1)
     uart_driver.open_drawer(2)
+    time.sleep(1)
     uart_driver.open_drawer(3)
+    time.sleep(1)
     uart_driver.open_drawer(4)
+    time.sleep(1)
     uart_driver.open_drawer(5)
 
     uart_driver.cleanup()
